@@ -64,6 +64,12 @@ function WriteLevel(){
     		sr.WriteLine("Button "+myButtons[i].transform.position.x+" "+myButtons[i].transform.position.y+" "+myButtons[i].transform.position.z+" "+myButtons[i].transform.rotation.eulerAngles.x+" "+myButtons[i].transform.rotation.eulerAngles.y+" "+myButtons[i].transform.rotation.eulerAngles.z+" "+myButtons[i].transform.localScale.x+" "+myButtons[i].transform.localScale.y+" "+myButtons[i].transform.name+" ");   	
     	}
     }
+     var myTexts = GameObject.FindGameObjectsWithTag("Text");
+     for(i=0;i<myTexts.Length;i++){
+    	if(myTexts[i].transform.parent == null){
+    		sr.WriteLine("Text "+myTexts[i].transform.position.x+" "+myTexts[i].transform.position.y+" "+myTexts[i].transform.position.z+" "+myTexts[i].transform.rotation.eulerAngles.x+" "+myTexts[i].transform.rotation.eulerAngles.y+" "+myTexts[i].transform.rotation.eulerAngles.z+" "+myTexts[i].transform.localScale.x+" "+myTexts[i].transform.localScale.y+" "+myTexts[i].transform.name+" ");   	
+    	}
+     }
     //sr.WriteLine ("This is an index: {0}",5);
     sr.Close();
 }
@@ -174,12 +180,18 @@ function WriteTemp(){
     		sr.WriteLine("Door "+myDoors[i].transform.position.x+" "+myDoors[i].transform.position.y+" "+myDoors[i].transform.position.z+" "+myDoors[i].transform.rotation.eulerAngles.x+" "+myDoors[i].transform.rotation.eulerAngles.y+" "+myDoors[i].transform.rotation.eulerAngles.z+" "+myDoors[i].transform.localScale.x+" "+myDoors[i].transform.localScale.y+" "+myDoors[i].transform.name+" ");   	
     	}
     }
-      var myButtons = GameObject.FindGameObjectsWithTag("Button");
+     var myButtons = GameObject.FindGameObjectsWithTag("Button");
      for(i=0;i<myButtons.Length;i++){
     	if(myButtons[i].transform.parent == null){
     		sr.WriteLine("Button "+myButtons[i].transform.position.x+" "+myButtons[i].transform.position.y+" "+myButtons[i].transform.position.z+" "+myButtons[i].transform.rotation.eulerAngles.x+" "+myButtons[i].transform.rotation.eulerAngles.y+" "+myButtons[i].transform.rotation.eulerAngles.z+" "+myButtons[i].transform.localScale.x+" "+myButtons[i].transform.localScale.y+" "+myButtons[i].transform.name+" ");   	
     	}
-    }
+     }
+     var myTexts = GameObject.FindGameObjectsWithTag("Text");
+     for(i=0;i<myTexts.Length;i++){
+    	if(myTexts[i].transform.parent == null){
+    		sr.WriteLine("Text "+myTexts[i].transform.position.x+" "+myTexts[i].transform.position.y+" "+myTexts[i].transform.position.z+" "+myTexts[i].transform.rotation.eulerAngles.x+" "+myTexts[i].transform.rotation.eulerAngles.y+" "+myTexts[i].transform.rotation.eulerAngles.z+" "+myTexts[i].transform.localScale.x+" "+myTexts[i].transform.localScale.y+" "+myTexts[i].transform.name+" ");   	
+    	}
+     }
     //sr.WriteLine ("This is an index: {0}",5);
     sr.Close();
 }
@@ -260,6 +272,9 @@ function SpawnLine(linepls : String){
 	if(linepls.Substring(0,4) == "Door"){
 		var myObject = Instantiate(prefabs[6], this.transform.position,Quaternion.identity);
 	}
+	if(linepls.Substring(0,4) == "Text"){
+		myObject = Instantiate(prefabs[8], this.transform.position,Quaternion.identity);
+	}
 	else if(linepls.Substring(0,5) == "Block"){
 		myObject = Instantiate(prefabs[0], this.transform.position,Quaternion.identity);
 	}
@@ -289,7 +304,7 @@ function SpawnLine(linepls : String){
 		myObject.transform.rotation.eulerAngles.z = float.Parse(linepls.Substring(GetSpace(linepls,5),GetSpaceDistance(linepls,5,6)));
 		myObject.transform.localScale.x = float.Parse(linepls.Substring(GetSpace(linepls,6),GetSpaceDistance(linepls,6,7)));
 		myObject.transform.localScale.y = float.Parse(linepls.Substring(GetSpace(linepls,7),GetSpaceDistance(linepls,7,8)));
-		if(linepls.Substring(0,4) == "Door"||linepls.Substring(0,6) == "Button"){
+		if(linepls.Substring(0,4) == "Door"||linepls.Substring(0,6) == "Button"||linepls.Substring(0,4) == "Text"){
 			myObject.transform.name = linepls.Substring(GetSpace(linepls,8),GetSpaceDistance(linepls,8,9));
 		}
 }
