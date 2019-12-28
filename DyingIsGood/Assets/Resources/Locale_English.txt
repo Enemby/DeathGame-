@@ -18,6 +18,7 @@
 	"LEVELEDITOR_TEST":"Test",
 	"LEVELEDITOR_STOP":"Stop",
 	"LEVELEDITOR_NEWBIECHECK":"It looks like you haven't used the editor before. Would you like to watch a short tutorial?",
+	"LEVELEDITOR_TUTORIAL":"Tutorial",
 	"GENERAL_YES":"Yes",
 	"GENERAL_NO":"No"
 }
