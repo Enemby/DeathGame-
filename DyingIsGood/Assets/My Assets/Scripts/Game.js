@@ -62,7 +62,7 @@ function CampaignCheck(){
 			PlayerPrefs.SetInt("CLevel",getLevel+1);
 			Debug.Log(getLevel);
 			PlayerPrefs.SetString("Level",campaignLevels[getLevel]);
-			PlayerPrefs.Save();
+			PlayerPrefs.Save(); //We need this for the campaign hack in SpawnTemp.
 		}
 		else{
 			nextScene = "main"; //Load the titlescreen, We're done!

@@ -6,7 +6,7 @@ function Update(){
 	Destroy(this.gameObject);
 }
 function CampaignLevelCheck(){
-	if(PlayerPrefs.GetInt("Campaign") == 1){
+	if(PlayerPrefs.GetInt("Campaign") == 1){ // oh. This is a fuckin hack. 
 		myFile = PlayerPrefs.GetString("Level");
 	}
 }
