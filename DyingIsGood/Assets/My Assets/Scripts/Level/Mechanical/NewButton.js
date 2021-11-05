@@ -1,13 +1,20 @@
 ﻿var door : GameObject[];
 var found : boolean = false;
 var currentTimeScale : float = 0;
+var sprites : Sprite[];
+private var myRenderer;
+function Start(){
+	myRenderer = GetComponent(SpriteRenderer);
+}
 function gateSwitch(){
 	for(i=0;i<door.Length;i++){
 	if(door[i].active == true){
 		door[i].active = false;
+		myRenderer.sprite = sprites[0];
 	}
 	else{
 		door[i].active = true;
+		myRenderer.sprite = sprites[1];
 	}
 	}
 }

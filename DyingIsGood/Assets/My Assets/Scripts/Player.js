@@ -3,6 +3,7 @@ var stopFriction : float = 0.8;
 var jumpSpeed : float = 5;
 var groundDistance : float = 0.5;
 var walkingSprites : Sprite[];
+var jumpSprite : Sprite;
 var aliveSprite : Sprite;
 var deadSprite : Sprite;
 var deadClip : AudioClip;
@@ -72,6 +73,9 @@ function iterateWalkSprites(){
 }
 function resetSprite(){
 	this.GetComponent(SpriteRenderer).sprite = aliveSprite;
+	if(!groundCheck()){
+		this.GetComponent(SpriteRenderer).sprite = jumpSprite;
+	}
 }
 function spriteTimer(){
 	privTimer+=Time.deltaTime;

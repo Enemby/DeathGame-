@@ -1,6 +1,10 @@
 ﻿var prefabs : GameObject[];
 var myFile : String = "Temp";
-function Update(){
+private var myDirectory : String = "CustomContent";
+function Start(){
+	Invoke("delayedStart",0.005);
+}
+function delayedStart(){
 	CampaignLevelCheck();
 	ReadTemp();
 	Destroy(this.gameObject);
@@ -8,14 +12,15 @@ function Update(){
 function CampaignLevelCheck(){
 	if(PlayerPrefs.GetInt("Campaign") == 1){ // oh. This is a fuckin hack. 
 		myFile = PlayerPrefs.GetString("Level");
+		myDirectory = "Campaign"; //Ew, it's hard coded!
 	}
 }
 function ReadTemp(){
 	var sr;
 	var line;
 	if(Application.platform == RuntimePlatform.OSXPlayer){ //apple was a mistake
-		if(File.Exists("CustomContent"+ Path.DirectorySeparatorChar+myFile+".d4h")){
-	        sr = File.OpenText("CustomContent"+ Path.DirectorySeparatorChar+myFile+".d4h");
+		if(File.Exists(myDirectory+Path.DirectorySeparatorChar+myFile+".d4h")){
+	        sr = File.OpenText(myDirectory+Path.DirectorySeparatorChar+myFile+".d4h");
 	        line = sr.ReadLine();
 	        while(line != null){
 	            //Debug.Log(line); // prints each line of the file
@@ -29,8 +34,8 @@ function ReadTemp(){
 	    }
 	}
 	else{
-	    if(File.Exists("CustomContent/"+myFile+".d4h")){
-	        sr = File.OpenText("CustomContent/"+myFile+".d4h");
+	    if(File.Exists(myDirectory+"/"+myFile+".d4h")){
+	        sr = File.OpenText(myDirectory+"/"+myFile+".d4h");
 	        line = sr.ReadLine();
 	        while(line != null){
 	            //Debug.Log(line); // prints each line of the file

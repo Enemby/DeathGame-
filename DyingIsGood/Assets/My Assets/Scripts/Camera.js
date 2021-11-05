@@ -17,4 +17,16 @@ function Update(){
 		}
 	}
 	this.transform.position = target.transform.position + offset;
+	if(editormode == true){
+		CameraZoomLogic();
+	}
+}
+function CameraZoomLogic(){
+	if(Input.GetButtonDown("Camera Reset")){
+		GetComponent.<UnityEngine.Camera>().orthographicSize = 5;
+	}
+	GetComponent.<UnityEngine.Camera>().orthographicSize += Input.GetAxisRaw("Camera Zoom")*0.2;
+	if(GetComponent.<UnityEngine.Camera>().orthographicSize < 2){
+		GetComponent.<UnityEngine.Camera>().orthographicSize= 2;
+	}
 }

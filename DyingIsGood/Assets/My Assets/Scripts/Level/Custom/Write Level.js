@@ -4,11 +4,16 @@ var  fileName = "Level";
 var toggle : boolean = false;
 var prefabs : GameObject[];
 var tempSpawn : GameObject;
+var myDir : String;
 function Start() {
      //WriteLevel();
      //ReadLevel();
      if(PlayerPrefs.GetInt("Campaign") == 0){
+     	myDir = "CustomContent";
      	ReadTitle();
+     }
+     else{
+     	myDir = "Campaign";
      }
 }
 function WriteLevel(){
@@ -196,15 +201,15 @@ function WriteTemp(){
     sr.Close();
 }
 function ReadTitle(){
-	if(PlayerPrefs.GetString("Level") != "null"){
+	if(PlayerPrefs.GetString("Level") != "null"){ //If we're in campaign mode, AND we have a level selected
 		var myLevel = PlayerPrefs.GetString("Level");
 		var sr;
 		var line;
 		if(Application.platform == RuntimePlatform.OSXPlayer){
-		    if(File.Exists("CustomContent"+ Path.DirectorySeparatorChar+myLevel)){
+		    if(File.Exists("Campaign"+ Path.DirectorySeparatorChar+myLevel)){
 		    	PlayerPrefs.SetString("Level","null");
 		    	PlayerPrefs.Save();
-		        sr = File.OpenText("CustomContent"+ Path.DirectorySeparatorChar+myLevel);
+		        sr = File.OpenText("Campaign"+ Path.DirectorySeparatorChar+myLevel);
 		        line = sr.ReadLine();
 		        while(line != null){
 		            //Debug.Log(line); // prints each line of the file
@@ -218,10 +223,10 @@ function ReadTitle(){
 		    }
 		   }
 		   else{
-			   	if(File.Exists("CustomContent/"+myLevel)){
+			   	if(File.Exists("Campaign/"+myLevel)){
 			    	PlayerPrefs.SetString("Level","null");
 			    	PlayerPrefs.Save();
-			        sr = File.OpenText("CustomContent/"+myLevel);
+			        sr = File.OpenText("Campaign/"+myLevel);
 			        line = sr.ReadLine();
 			        while(line != null){
 			            //Debug.Log(line); // prints each line of the file

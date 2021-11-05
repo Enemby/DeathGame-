@@ -7,11 +7,11 @@ function Start(){
 	}
 }
 function Close(){
+	PlayerPrefs.SetInt(myKey,1);
+	PlayerPrefs.Save();
 	targetCanvas.active = false;
 }
 function openLink(){
 	Application.OpenURL(myURL);
-	PlayerPrefs.SetInt(myKey,1);
-	PlayerPrefs.Save();
 	Close();
 }
