@@ -7,6 +7,9 @@ var speed : float = 1;
 function Start(){
 	myText.text = messages[Random.Range(0,messages.Length-1)];
 }
+function newMessage(){
+	myText.text = messages[Random.Range(0,messages.Length-1)];
+}
 function flipScale(){
 	if(Up == false){
 		Up = true;
@@ -28,5 +31,8 @@ function Update () {
 	}
 	if(this.transform.localScale.y > myScaleMax||this.transform.localScale.y < myScaleMin){
 		flipScale();	
-	 } 
+	 }
+	 if(Input.GetKeyDown("n")){
+	 	newMessage();
+	 }
 }

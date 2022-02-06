@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Text))]
+
 /// <summary>
 /// Provides the ability to manipulate the sibling Text component at runtime to match the current Locale.
 /// </summary>
@@ -18,13 +18,29 @@ public class LocaleText : MonoBehaviour {
     private void Awake () {
         // Cache references:
         textComponent = GetComponent<Text>();
-        localeManager = GameObject.FindWithTag("Localization Manager").GetComponent<LocalizationManager>();
-        // Bind event if we autoUpdate:
-		updateLocale();
-        if (autoUpdate == true) {
-            localeManager.languageChanged += updateLocale;
-        }
+		if (GameObject.FindWithTag ("Localization Manager").GetComponent<LocalizationManager> () != null) {
+			localeManager = GameObject.FindWithTag ("Localization Manager").GetComponent<LocalizationManager> ();
+			// Bind event if we autoUpdate:
+			updateLocale ();
+			if (autoUpdate == true) {
+				localeManager.languageChanged += updateLocale;
+			}
+		} else {
+			InvokeRepeating("UpdateReferences",2.0f,2.0f);
+		}
     }
+	private void UpdateReferences(){
+		textComponent = GetComponent<Text>();
+		if (GameObject.FindWithTag ("Localization Manager").GetComponent<LocalizationManager> () != null) {
+			localeManager = GameObject.FindWithTag ("Localization Manager").GetComponent<LocalizationManager> ();
+			// Bind event if we autoUpdate:
+			updateLocale ();
+			if (autoUpdate == true) {
+				localeManager.languageChanged += updateLocale;
+			}
+			CancelInvoke();
+		}
+	}
     /// <summary>
     /// Attempts to fetch the associated string resource from the LocalizationManager.
     /// Will update the sibling Text component's text attribute if successful.
@@ -33,7 +49,12 @@ public class LocaleText : MonoBehaviour {
         try {
             string response = localeManager.getText(textID);
             if (response != null) {
-                textComponent.text = response;
+				if (textComponent == null) {
+					GetComponent<TextMesh>().text = response;
+				}
+				else{
+                	textComponent.text = response;
+				}
             }
         }
         catch (NullReferenceException e) {

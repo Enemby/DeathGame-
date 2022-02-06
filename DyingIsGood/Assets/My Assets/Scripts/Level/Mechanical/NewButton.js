@@ -53,7 +53,7 @@ function Update(){
 	
 }
 function OnTriggerEnter2D(otherobj : Collider2D){
-	if(otherobj.tag == "Player"||otherobj.tag == "Enemy"){
+	if(otherobj.tag == "Player"||otherobj.tag == "Enemy"||otherobj.tag == "Activator"){
 		if(door != null){
 			gateSwitch();
 		}

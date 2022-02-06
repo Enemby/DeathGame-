@@ -10,12 +10,16 @@ function pushObject(myobj : GameObject){
 	if(timer <= 0.01){
 		this.GetComponent(SpriteRenderer).sprite = pistonSprites[1];
 		myobj.GetComponent(Rigidbody2D).AddForce(Vector2(this.transform.right.x,this.transform.right.y)*pushForce);
+		if(this.GetComponent("Rigidbody2D") != null){
+			this.GetComponent(Rigidbody2D).AddForce(-Vector2(this.transform.right.x,this.transform.right.y)*pushForce);
+		}
 		timer = cooldown;
 	}
 }
 function OnCollisionEnter2D(otherobj : Collision2D){
-	if(otherobj.gameObject.tag == "Player"||otherobj.gameObject.tag == "Enemy"){
+	if(otherobj.gameObject.tag == "Player"||otherobj.gameObject.tag == "Enemy"||otherobj.gameObject.tag == "DeadCharacter"||otherobj.gameObject.tag == "PhysicsObject"){
 		pushObject(otherobj.gameObject);
+		otherobj.gameObject.BroadcastMessage("randomDirection");
 	}
 }
 function Update(){

@@ -9,4 +9,8 @@ function Update () {
 		var mytext = this.GetComponent(UI.Text);
 		mytext.text = web.text;
 	}
+	else{
+		var mytext2 = this.GetComponent(UI.Text);
+		mytext2.text = "Loading... If this never completes, MOTD may be unreachable currently!";
+	}
 }
