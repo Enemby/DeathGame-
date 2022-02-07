@@ -7,6 +7,8 @@ var textMenu : GameObject;
 var nameTest : UI.Text;
 var slowMovement : boolean = false;
 var nameTextPanel : GameObject;
+var baseMovement : float = 0.05;
+var slowSpeed : float = 0.5;
 public var nameObjects : boolean = false;
 function Start () {
 	Time.timeScale = 0;
@@ -29,13 +31,13 @@ function Update () {
 			}
 		}
 		if(Input.GetButton("Scale") && !Input.GetButton("Sprint")&& allowInput == true){
-			myObjs[objIndex].transform.localScale.x += Input.GetAxisRaw("Horizontal")*0.05;
-			myObjs[objIndex].transform.localScale.y += Input.GetAxisRaw("Vertical")*0.05;
+			myObjs[objIndex].transform.localScale.x += Input.GetAxisRaw("Horizontal")*baseMovement*Time.unscaledDeltaTime;
+			myObjs[objIndex].transform.localScale.y += Input.GetAxisRaw("Vertical")*baseMovement*Time.unscaledDeltaTime;
 		}
 		else{
 			if(Input.GetButton("Scale") && Input.GetButton("Sprint")&& allowInput == true){
-				myObjs[objIndex].transform.localScale.x += Input.GetAxisRaw("Horizontal")*0.25;
-				myObjs[objIndex].transform.localScale.y += Input.GetAxisRaw("Vertical")*0.25;
+				myObjs[objIndex].transform.localScale.x += Input.GetAxisRaw("Horizontal")*baseMovement*slowSpeed*Time.unscaledDeltaTime;
+				myObjs[objIndex].transform.localScale.y += Input.GetAxisRaw("Vertical")*baseMovement*slowSpeed*Time.unscaledDeltaTime;
 				if(Input.GetButtonDown("Rotate Object")&& allowInput == true){
 					myObjs[objIndex].transform.localRotation.eulerAngles.z = 0;
 				}
@@ -43,23 +45,23 @@ function Update () {
 		}
 		if(Input.GetButton("Sprint") && !Input.GetButton("Scale")&& allowInput == true){
 			if(slowMovement == false){
-				this.transform.position.x += Input.GetAxisRaw("Horizontal")*0.05;
-				this.transform.position.y += Input.GetAxisRaw("Vertical")*0.05;
+				this.transform.position.x += Input.GetAxisRaw("Horizontal")*baseMovement*slowSpeed*Time.unscaledDeltaTime;
+				this.transform.position.y += Input.GetAxisRaw("Vertical")*baseMovement*slowSpeed*Time.unscaledDeltaTime;
 			}
 			else{
-				this.transform.position.x += Input.GetAxisRaw("Horizontal")*0.01;
-				this.transform.position.y += Input.GetAxisRaw("Vertical")*0.01;
+				this.transform.position.x += Input.GetAxisRaw("Horizontal")*baseMovement*slowSpeed*0.5*Time.unscaledDeltaTime;
+				this.transform.position.y += Input.GetAxisRaw("Vertical")*baseMovement*slowSpeed*0.5*Time.unscaledDeltaTime;
 			}
 		}
 		else{
 			if(!Input.GetButton("Scale")&& allowInput == true){
 				if(slowMovement == false){
-					this.transform.position.x += Input.GetAxisRaw("Horizontal")*0.25;
-					this.transform.position.y += Input.GetAxisRaw("Vertical")*0.25;
+					this.transform.position.x += Input.GetAxisRaw("Horizontal")*baseMovement*Time.unscaledDeltaTime;
+					this.transform.position.y += Input.GetAxisRaw("Vertical")*baseMovement*Time.unscaledDeltaTime;
 				}
 				else{
-					this.transform.position.x += Input.GetAxisRaw("Horizontal")*0.025;
-					this.transform.position.y += Input.GetAxisRaw("Vertical")*0.025;
+					this.transform.position.x += Input.GetAxisRaw("Horizontal")*baseMovement*0.5*Time.unscaledDeltaTime;
+					this.transform.position.y += Input.GetAxisRaw("Vertical")*baseMovement*0.5*Time.unscaledDeltaTime;
 				}
 			}
 		}

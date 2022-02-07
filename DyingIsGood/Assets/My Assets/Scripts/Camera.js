@@ -21,6 +21,9 @@ function Update(){
 		CameraZoomLogic();
 	}
 }
+function LateUpdate(){
+	this.transform.position = target.transform.position + offset; //Must be ran in LateUpdate to eliminate jerky camera following
+}
 function CameraZoomLogic(){
 	if(Input.GetButtonDown("Camera Reset")){
 		GetComponent.<UnityEngine.Camera>().orthographicSize = 5;
