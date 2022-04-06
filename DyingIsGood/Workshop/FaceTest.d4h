@@ -1,0 +1,8 @@
+Block 0 0 0 0 0 0 25 2 Block(Clone) 
+Block -2.695 0.75 0 0 0 0 0.1500942 0.2500008 Glasses 
+Block -2.805 0.75 0 0 0 0 0.1500942 0.2500008 Glasses 
+Player -2.75 0.5499999 0 0 0 0 1 1 Player 
+Modifier -2.675 0.75 0 0 0 0 1 1 Trigger(Glasses) 
+Modifier -2.675 0.75 0 0 0 0 1 1 Color(Glasses.255.255.255.255.) 
+Modifier -2.675 0.75 0 0 0 0 1 1 Foreground(Glasses) 
+Modifier -2.675 0.75 0 0 0 0 1 1 Parent(Glasses.Player.) 

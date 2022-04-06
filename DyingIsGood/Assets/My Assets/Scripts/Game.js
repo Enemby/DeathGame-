@@ -53,6 +53,9 @@ function timeFreeze(){
 			PlayerPrefs.SetInt("MoneyLevel",0);
 			if(win == true){
 				PlayerPrefs.SetInt("Money",PlayerPrefs.GetInt("Money")+1000);
+				if(GameObject.FindGameObjectsWithTag("DeadCharacter").Length <= 1){
+					PlayerPrefs.SetInt("Money",PlayerPrefs.GetInt("Money")+255);
+				}
 			}
 		}
 		if(!PlayerPrefs.HasKey("CampaignTime")){

@@ -1,0 +1,5 @@
+[
+Player 0 0 0
+Block 0 1 0
+Piston 0 0 -1
+]

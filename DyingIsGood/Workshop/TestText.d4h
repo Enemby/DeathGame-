@@ -1,0 +1,14 @@
+Block 0 0 0 0 0 0 25 2 
+Player 0 -1.5 0 0 0 0 1 1 
+Player 1 -1.75 0 0 0 0 1 1 
+Piston 0 -4 0 0 0 0 -4 4 
+Enemy 0 1.5 0 0 0 0 1 1 
+Enemy 1.5 -2.25 0 0 0 0 1 1 
+Spike 0 -2.5 0 0 0 0 3 3 
+Spike 1 -5.5 0 0 0 0 3 3 
+RezNode 0 -3 0 0 0 0 0.25 0.25 
+Door 2 -5.25 0 0 0 94.00001 0.13125 0.6749998 Door(Clone)  
+Button 2 -4.25 0 0 0 0 0.5 0.5 Button(Clone)  
+Text 1.630001 -0.5999985 0 0 0 0 0.5 0.5 Text1 
+Text 4.130001 -2.849998 0 0 0 0 0.5 0.5 Testing_way_Longer_text 
+Text 3.130001 2.400002 0 0 0 0 0.5 0.5 Text3 

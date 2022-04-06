@@ -1,0 +1,16 @@
+Block 0 0 0 0 0 0 25 2 BlockR 
+Block -7 2 0 0 0 7.000005 25 2 BlockR 
+Block -11 -2 0 0 0 17 25 2 BlockR 
+Block -15 -6 0 0 0 22 25 2 BlockR 
+Block -18.5 -10.75 0 0 0 31.00001 25 2 BlockR 
+Block -12.5 -13.75 0 0 0 33.00002 25 2 BlockR 
+Block -8 -13.75 0 0 0 40.00001 25 2 BlockR 
+Block -4 -13.75 0 0 0 45.00001 25 2 BlockR 
+Block -2.75 -11.75 0 0 0 62 25 2 BlockR 
+Block 2 -4.25 0 0 0 81.00001 25 2 BlockR 
+Block 6.5 -3.5 0 0 0 83.00002 25 2 BlockR 
+Block 8 -3.5 0 0 0 91.00002 25 2 BlockR 
+Block 9.25 -1.25 0 0 0 92.00001 25 2 BlockR 
+Block 9.25 0.5 0 0 0 104 25 2 BlockR 
+Player -0.4477102 0.4899999 0 0 0 0 -1 1 PlayerCharacter(Clone)  
+Modifier 6.371402 6.149808 0 0 0 0 1 1 Rotator(BlockR)  
