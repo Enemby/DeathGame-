@@ -14,9 +14,9 @@ var stepUpHeight : float = 0.49;
 var skill : float = 0.5f; //Ability to jump on target
 private var myScale : Vector3 = Vector3.zero;
 var myRenderer : SpriteRenderer;
+var myRB : Rigidbody2D;
 var touchingIce : boolean = false;
 function randomColor(){
-	var myRenderer = this.GetComponent(SpriteRenderer);
 	var myColor : Color;
 	myColor.r = Random.Range(0.6,1);
 	myColor.g = Random.Range(0.6,1);
@@ -54,18 +54,27 @@ function jumpLogic(){
 	}
 }
 function Movement(){
-	this.GetComponent(Rigidbody2D).velocity = Vector2(this.GetComponent(Rigidbody2D).velocity.x+moveForce*Time.deltaTime*250,this.GetComponent(Rigidbody2D).velocity.y);
+	myRB.velocity = Vector2(this.GetComponent(Rigidbody2D).velocity.x+moveForce*Time.deltaTime*250,myRB.velocity.y);
 	jumpLogic();
 }
 function Friction(){
-	this.GetComponent(Rigidbody2D).velocity.x *= 0.8;
+	myRB.velocity.x *= 0.8;
 }
 function Start(){
-	randomColor();
 	randomDirection();
 	skill = Random.Range(0.1,0.7);
 	myRenderer = this.GetComponent(SpriteRenderer);
+	myRB = this.GetComponent(Rigidbody2D);
+	randomColor();
 }
+/* this would significantly optimize humans
+function OnEnable(){
+	InvokeRepeating("Movement",0.1f,0.01f);
+}
+function OnDisable(){
+	CancelInvoke("Movement");
+}
+*/
 function Jump(){
 	if(this.GetComponent(Rigidbody2D).velocity.y <= 0.1){ //Lazy ground check
 		this.GetComponent(Rigidbody2D).velocity.y = jumpForce;
@@ -133,8 +142,8 @@ function FixedUpdate(){
 	timer+=Time.deltaTime;
 	if(touchingIce != true){
 		Friction();
+		Movement();
 	}
-	Movement();
 	if(timer >= 0.3){
 		checkStuck();
 		timer = 0;

@@ -155,6 +155,18 @@ function TakeAction(myArray : GameObject[]){
 			myArray[i].AddComponent.<PhysicsObject>();
 		}
 	}
+	if(action == "Rename"){
+		var myNewDad2 : String;
+		var index2 = 0;
+		index2 = GetParentName(myObjectName,0);
+		myNewDad2 = myObjectName.Substring(index2,myObjectName.Length-index2-1);
+		Debug.Log("Dad: "+myNewDad2);
+		Debug.Log("Object: " +myObjectName.Substring(0,index2-1));
+		myArray = FindGameObjectsWithName(myObjectName.Substring(0,index2-1));
+		for(i = 0; i < myArray.Length;i++){
+			myArray[i].gameObject.name = myNewDad2;
+		}
+	}
 	if(action == "Spawner"){
 		var mySpawner = new GameObject("Spawner");
 		mySpawner.transform.position = this.transform.position;
@@ -170,6 +182,12 @@ function TakeAction(myArray : GameObject[]){
 			}
 			timerArray = myArray;
 			Invoke("EnableObjects",myTime);
+		}
+		if(action.Substring(0,7) == "Disable"){
+			var myTime2 = float.Parse(action.Substring(7,action.Length-7));
+			Debug.Log("Timer found! Time: "+myTime2);
+			timerArray = myArray;
+			Invoke("DisableObjects",myTime2);
 		}
 	}
 }
@@ -220,6 +238,11 @@ function FindGameObjectsWithName(name : String){
 function EnableObjects(){
 	for(i=0;i<timerArray.Length;i++){
 			timerArray[i].active = true;
+		}
+}
+function DisableObjects(){
+	for(i=0;i<timerArray.Length;i++){
+			timerArray[i].active = false;
 		}
 }
 function ConvertColor(r:int,g:int,b:int,a:int) : Color{

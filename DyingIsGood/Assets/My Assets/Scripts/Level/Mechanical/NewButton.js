@@ -3,8 +3,10 @@ var found : boolean = false;
 var currentTimeScale : float = 0;
 var sprites : Sprite[];
 private var myRenderer;
+var lastName = "";
 function Start(){
 	myRenderer = GetComponent(SpriteRenderer);
+	lastName = gameObject.name;
 }
 function gateSwitch(){
 	for(i=0;i<door.Length;i++){
@@ -49,7 +51,12 @@ function Update(){
 	if(currentTimeScale != Time.timeScale){
 		found = false;
 	}
-
+	else{
+		if(lastName != gameObject.name && door.Length <= 0){
+			found = false;
+			lastName = gameObject.name;
+		}
+}
 	
 }
 function OnTriggerEnter2D(otherobj : Collider2D){
